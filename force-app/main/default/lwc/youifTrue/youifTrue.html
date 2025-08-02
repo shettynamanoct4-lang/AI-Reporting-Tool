@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="If True magic">
+        <lightning-button 
+        variant="brand"
+        label={defaultValue}
+        onclick={changeHandler}>
+        </lightning-button>
+    </lightning-card>
+    <template if:true={display}>
+        <lightning-card title="Display">
+            <h1>Hurray</h1> 
+        </lightning-card>
+
+    </template>
+    
+    
+</template>

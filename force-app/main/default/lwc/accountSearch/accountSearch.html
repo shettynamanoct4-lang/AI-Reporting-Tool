@@ -1,0 +1,75 @@
+<template>
+    <lightning-card title="Account Search">
+        <div class="slds-p-around_medium">
+            <lightning-input
+                label="Global Search"
+                placeholder="Enter more than 3 characters to search across all fields"
+                value={globalSearchKey}
+                onchange={handleGlobalSearchChange}>
+            </lightning-input>
+        </div>
+
+        <!-- Field-specific filters -->
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-4">
+                <lightning-input
+                    label="Name"
+                    placeholder="Search by Account Name"
+                    value={searchKey}
+                    onchange={handleSearchKeyChange}>
+                </lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-4">
+                <lightning-input
+                    label="Phone"
+                    placeholder="Search by Phone"
+                    value={phoneFilter}
+                    onchange={handlePhoneFilterChange}>
+                </lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-4">
+                <lightning-combobox
+                    label="Rating"
+                    placeholder="Select Rating"
+                    value={ratingFilter}
+                    options={ratingOptions}
+                    onchange={handleRatingFilterChange}>
+                </lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_1-of-4">
+                <lightning-combobox
+                    label="Status"
+                    placeholder="Select Status"
+                    value={statusFilter}
+                    options={statusOptions}
+                    onchange={handleStatusFilterChange}>
+                </lightning-combobox>
+            </div>
+        </div>
+
+        <div class="slds-m-top_medium slds-text-align_right">
+            <lightning-button label="Reset" onclick={handleReset}></lightning-button>
+        </div>
+
+        <div style="height: 500px;">
+            <lightning-datatable
+                key-field="id"
+                data={accounts}
+                columns={columns}
+                enable-infinite-loading
+                onloadmore={handleLoadMore}
+                is-loading={isLoading}
+                hide-checkbox-column="true"
+                onrowaction={handleRowAction}> <!-- Added rowaction event -->
+            </lightning-datatable>
+        </div>
+
+        <!-- Display child component when an account is selected -->
+        <template if:true={selectedAccountId}>
+            <c-account-details
+                account-id={selectedAccountId}>
+            </c-account-details>
+        </template>
+        
+    </lightning-card>
+</template>

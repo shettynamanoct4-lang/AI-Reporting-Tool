@@ -1,0 +1,23 @@
+<template>            
+    <div style="height:200px;">
+        <lightning-card title="Accounts infinte Data Table load With OFFSET Approach" icon-name="custom:custom63">      
+            <template if:true={accountRecords}>                       
+                <div style="height:300px;">       
+                    <lightning-datatable 
+                        key-field="Id" 
+                        data={accountRecords} 
+                        columns={columns}  
+                        show-row-number-column
+                        enable-infinite-loading={infiniteLoadingBool}
+                        is-loading={isLoadingBool}
+                        onloadmore={onLoadMore}
+                        onrowselection={onRowSelection}> 
+                    </lightning-datatable>       
+                </div>
+            </template>           
+            <template if:true={error}>       
+                Error is {error}                       
+            </template>  
+        </lightning-card>   
+    </div>    
+</template>

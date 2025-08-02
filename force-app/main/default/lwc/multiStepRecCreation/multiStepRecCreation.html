@@ -1,0 +1,61 @@
+<template>
+    <lightning-card title="Multi-Step Form Wizard">
+        <div class="slds-p-around_medium">
+            <!-- Progress Indicator -->
+            <lightning-progress-indicator current-step={currentStep} type="base" class="slds-m-bottom_medium">
+                <lightning-progress-step label="Account Details" value="1"></lightning-progress-step>
+                <lightning-progress-step label="Contact Details" value="2"></lightning-progress-step>
+                <lightning-progress-step label="Success" value="3"></lightning-progress-step>
+            </lightning-progress-indicator>
+
+            <!-- Error Message -->
+            <template if:true={hasErrors}>
+                <div class="slds-text-color_error slds-m-bottom_small">
+                    <lightning-icon icon-name="utility:error" size="x-small" class="slds-m-right_xx-small"></lightning-icon>
+                    {errorMessage}
+                </div>
+            </template>
+
+            <!-- Step Content -->
+            <div class="slds-transition-show">
+                <!-- Step 1: Account Information -->
+                <template if:true={isStepOne}>
+                    <div class="slds-m-top_medium">
+                        <lightning-input label="Account Name" value={accountName} onchange={handleChange} name="accountName"></lightning-input>
+                        <lightning-input label="Email" type="email" value={email} onchange={handleChange} name="email" required></lightning-input>
+                        <lightning-combobox
+                            name="rating"
+                            label="Rating"
+                            value={rating}
+                            placeholder="Select Rating"
+                            options={ratingOptions}
+                            onchange={handleChange}>
+                        </lightning-combobox>
+                    </div>
+                </template>
+
+                <!-- Step 2: Contact Information -->
+                <template if:true={isStepTwo}>
+                    <div class="slds-m-top_medium">
+                        <lightning-input label="First Name" value={firstName} onchange={handleChange} name="firstName"></lightning-input>
+                        <lightning-input label="Last Name" value={lastName} onchange={handleChange} name="lastName" required></lightning-input>
+                        <p><strong>Account Name:</strong> {accountName}</p>
+                    </div>
+                </template>
+
+                <!-- Step 3: Success Message -->
+                <template if:true={isStepThree}>
+                    <div class="slds-m-top_medium slds-text-title_bold">
+                        <p>The account and contact have been successfully created!</p>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="slds-m-top_medium">
+                <lightning-button label="Previous" onclick={handlePrevious} class="slds-m-right_small" variant="neutral" disabled={isFirstStep}></lightning-button>
+                <lightning-button label={nextButtonLabel} onclick={handleNext} variant="brand"></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>

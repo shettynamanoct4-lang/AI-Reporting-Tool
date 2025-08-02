@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Ask Me Anything">
+        <div class="slds-m-around_medium">
+            <lightning-input type="text" label="Your Question" value={question} onchange={handleInputChange}></lightning-input>
+            <lightning-button label="Ask" icon-name="utility:search" variant="brand" onclick={handleSearch} class="slds-m-top_medium"></lightning-button>
+            
+            <template if:true={loading}>
+                <lightning-spinner alternative-text="Fetching response..."></lightning-spinner>
+            </template>
+            
+            <template if:true={response}>
+                <div class="slds-m-top_medium">
+                    <lightning-card title="ChatGPT Response">
+                        <p class="slds-m-around_medium">{response}</p>
+                    </lightning-card>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Enter the details">
+        <div class= "slds-var-m-around_medium">
+            <lightning-input type="text" name="fName" label="Enter your First Name" onchange={changeHandler}></lightning-input>
+            <lightning-input type="text" name="lName" label="Enter your Last Name" onchange={changeHandler}></lightning-input>
+        </div>
+    </lightning-card>
+
+    <lightning-card title="Result of the details">
+        <div class= "slds-var-m-around_medium">
+            <h1>The First Name is : {fullName.firstName}
+                <br/>
+                The Last Name is : {fullName.lastName}
+            
+
+            </h1>
+            
+        </div>
+    </lightning-card>
+    
+</template>

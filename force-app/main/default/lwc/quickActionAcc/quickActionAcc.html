@@ -1,0 +1,15 @@
+<template>
+    <lightning-quick-action-panel title="Quick Action Title">
+        <lightning-spinner alternative-text="Loading" size="small" if:true={isSpinner} ></lightning-spinner>
+        <div class="slds-p-around_large">
+            <lightning-input type="text" variant="standard" value={name} name="name" label="Account Name" onchange={handleChange} ></lightning-input>
+            <lightning-input type="text" variant="standard" value={phone} name="phone" label="Account Phone" onchange={handleChange} ></lightning-input>
+        </div>
+    <div slot="footer">
+        <lightning-button variant="destructive" label="Cancel" onclick={closeAction} ></lightning-button>
+        &nbsp; &nbsp; <!--To provide space between Cancel and save button use this-->
+        <lightning-button variant="brand" label="Save" onclick={handleSave} ></lightning-button>
+    </div>
+</lightning-quick-action-panel>
+    
+</template>

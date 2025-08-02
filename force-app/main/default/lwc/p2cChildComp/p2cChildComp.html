@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Parent To Child">
+        <div class = "slds-var-m-around_medium" >
+            <template for:each={cars} for:item="ca">
+                <div key={ca.name}>{ca.mil}</div>
+            </template>
+        </div>
+
+    </lightning-card>
+    
+</template>

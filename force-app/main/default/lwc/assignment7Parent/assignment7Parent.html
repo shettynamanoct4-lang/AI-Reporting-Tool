@@ -1,0 +1,27 @@
+<template>
+ 
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+            <tr>
+                <th scope="col">Opportunity Name</th>
+                <th scope="col">StageName</th>
+                <th scope="col">Probability</th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={opportunities} for:item="opp">
+                <c-assignment7-Child
+                    key={opp.Id}
+                    opportunity={opp}
+                    onopportunityselect={handleOpportunitySelect}
+                ></c-assignment7-Child>
+            </template>
+        </tbody>
+    </table>
+
+    <div if:true={selectedOpportunity}>
+        <p>You have selected {selectedOpportunity.Name}</p>
+    </div>
+
+
+</template>

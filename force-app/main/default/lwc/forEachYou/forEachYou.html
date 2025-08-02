@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="For Each Demo using Wire">
+        <template if:true={fetchAcc.data}>
+            <template for:each={fetchAcc.data} for:item="acc">
+                <h1 key={acc.Id}>{acc.Name}</h1>
+            </template>
+        </template>
+        <template if:true={fetchAcc.error}>
+            <template for:each={fetchAcc.error} for:item="acc">
+                <h1 key={acc.Id}>{acc.Name}</h1>
+            </template>
+        </template>
+        
+
+    </lightning-card>
+    
+</template>

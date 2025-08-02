@@ -1,0 +1,20 @@
+<template>
+    <template if:true={isSubmitted}>
+        <lightning-card title="Case Submitted!" icon-name="utility:check">
+            <div class="slds-p-around_medium">
+                <p>Your case <strong>{caseNumber}</strong> has been submitted successfully.</p>
+                <lightning-button label="Create Another Case" variant="brand" onclick={resetForm}></lightning-button>
+            </div>
+        </lightning-card>
+    </template>
+
+    <template if:false={isSubmitted}>
+        <lightning-card title="Create a Case" icon-name="standard:case">
+            <div class="slds-p-around_medium">
+                <lightning-input label="Subject" value={subject} onchange={handleChange} name="subject" required></lightning-input>
+                <lightning-textarea label="Description" value={description} onchange={handleChange} name="description" required></lightning-textarea>
+                <lightning-button label="Submit Case" variant="brand" onclick={handleSubmit}></lightning-button>
+            </div>
+        </lightning-card>
+    </template>
+</template>

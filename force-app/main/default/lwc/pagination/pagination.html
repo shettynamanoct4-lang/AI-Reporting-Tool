@@ -1,0 +1,14 @@
+<template>
+    <div if:true={showPagination}>
+        <lightning-button-group>
+            <lightning-button label="First" onclick={handleFirstPage} disabled={disablePrevious}></lightning-button>
+            <lightning-button label="Previous" onclick={handlePreviousPage} disabled={disablePrevious}></lightning-button>
+            <lightning-button label="Next" onclick={handleNextPage} disabled={disableNext}></lightning-button>
+            <lightning-button label="Last" onclick={handleLastPage} disabled={disableNext}></lightning-button>
+        </lightning-button-group>
+
+        <div>
+            Page {currentPage} of {totalPages}
+        </div>
+    </div>
+</template>

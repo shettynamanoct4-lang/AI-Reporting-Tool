@@ -1,0 +1,85 @@
+<template>
+    <lightning-card>
+        <div slot="title" class="slds-grid slds-grid_vertical-align-center">
+            <span class="bot-icon">🤖</span>
+            <span class="slds-m-left_small title-text">Ask AI</span>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-messages">
+                <template for:each={messages} for:item="msg">
+                    <div key={msg.id} class={msg.class}>
+                        <template if:true={msg.isTable}>
+                            <lightning-datatable
+                                key-field="Id"
+                                data={msg.tableData}
+                                columns={msg.columns}
+                                hide-checkbox-column>
+                            </lightning-datatable>
+                            <div class="slds-m-top_small">
+                                <lightning-button label="Download Excel"
+                                                  variant="brand"
+                                                  icon-name="utility:download"
+                                                  onclick={downloadExcel}
+                                                  data-id={msg.id}>
+                                </lightning-button>
+                            </div>
+                        </template>
+                        <template if:false={msg.isTable}>
+                            {msg.text}
+                        </template>
+                    </div>
+                </template>
+
+                <template if:true={loading}>
+                    <div class="bot-typing">
+                        <img src="https://i.gifer.com/ZKZg.gif" alt="Bot typing..." />
+                        <span>Fetching data...</span>
+                    </div>
+                </template>
+            </div>
+
+            <div class="chat-input">
+
+                <div class="input-container">
+
+
+                <lightning-input
+    type="text"
+    label="Ask about your Salesforce data..."
+    value={userQuery}
+    placeholder="Type a search query or select a prompt"
+    onchange={handleInputChange}
+    onfocus={handleShowSuggestions}>
+</lightning-input>
+
+<!-- Suggestion Dropdown -->
+<template if:true={showSuggestions}>
+    <div class="suggestion-dropdown">
+        <template for:each={promptOptions} for:item="prompt">
+            <div key={prompt.value} class="suggestion-item" onclick={handleSuggestionClick} data-value={prompt.value}>
+                {prompt.label}
+            </div>
+        </template>
+    </div>
+</template>
+</div>
+
+
+
+
+
+                <lightning-button-icon icon-name="utility:send"
+                                       variant="brand"
+                                       alternative-text="Send"
+                                       onclick={handleAsk}>
+                </lightning-button-icon>
+                <lightning-button-icon icon-name="utility:refresh"
+                                       variant="border-filled"
+                                       alternative-text="Clear"
+                                       onclick={handleReset}>
+                </lightning-button-icon>
+            </div>
+        </div>
+    </lightning-card>
+</template>

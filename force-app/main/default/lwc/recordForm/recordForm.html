@@ -1,0 +1,50 @@
+<template>
+    <lightning-card title="Record Form- Default Mode">
+        <!-- We can use those Record View and Record Form if we want to add CSS and Use If:True templates instead of this-->
+
+        <!--In this default mode the records will be in view mode after it's saved-->
+        <!--Layout-Type full shows all feilds related to that record-->
+        <lightning-record-form
+        object-api-name={objectApiName}
+        columns="2"
+        layout-type="Full">
+        </lightning-record-form>
+    </lightning-card>
+
+
+    <lightning-card title="Record Form-Edit Mode">
+        <lightning-record-form
+        object-api-name={objectApiName}
+        columns="2"
+        fields={fields}
+        mode="edit"
+        record-id={recordId}>
+        </lightning-record-form>
+    </lightning-card>
+
+
+
+    <lightning-card title="Record Form-View Mode">
+        <lightning-record-form
+        object-api-name={objectApiName}
+        columns="2"
+        fields={fields}
+        mode="view"
+        record-id={recordId}>
+        </lightning-record-form>
+    </lightning-card>
+
+
+
+    <lightning-card title="Record Form-Read Only Mode">
+        <lightning-record-form
+        object-api-name={objectApiName}
+        columns="2"
+        fields={fields}
+        mode="readonly"
+        record-id={recordId}>
+        </lightning-record-form>
+    </lightning-card>
+    
+    
+</template>

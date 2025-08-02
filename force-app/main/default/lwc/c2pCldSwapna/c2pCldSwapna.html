@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title = "Child Comp Employee info">
+        <lightning-input label="Enter Name" name="nm" onchange={changeHandler} value={name}></lightning-input>
+        <lightning-input label="Enter Phone" name="phn" onchange={changeHandler}  value={phone}></lightning-input>
+        <lightning-input label="Enter City" name="cty" onchange={changeHandler} value={city}></lightning-input>
+        <p></p>
+        <lightning-button label="Submit" onclick={childEvntFire}></lightning-button>
+    </lightning-card>
+    
+</template>

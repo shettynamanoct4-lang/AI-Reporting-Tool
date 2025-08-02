@@ -1,0 +1,25 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>            
+    <div style="height:500px;">
+        <lightning-card title="Datatable For more than 50k records load With Record Id Order By Approach " icon-name="custom:custom63">  
+            <p> Total Records : {totalRecords}</p> 
+            <p> Records Loaded : {recordLoaded}</p>    
+            <template if:true={accountRecords}>                       
+                <div style="height:300px;">       
+                    <lightning-datatable
+                        key-field="Id" 
+                        data={accountRecords} 
+                        columns={columns}  
+                        show-row-number-column
+                        enable-infinite-loading
+                        onloadmore={onLoadMore}>
+                    </lightning-datatable>        
+                </div>
+            </template>           
+            <template if:true={error}>       
+                Error is {error}                       
+            </template>  
+        </lightning-card>   
+    </div>    
+</template>

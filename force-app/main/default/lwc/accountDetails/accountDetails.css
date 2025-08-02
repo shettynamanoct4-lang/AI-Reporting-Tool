@@ -1,0 +1,45 @@
+.custom-card {
+    border: 0.5px solid #dcdcdc; /* Salesforce Blue */
+    box-shadow: 10px 20px 80px 90px rgba(0, 0, 0, 0.1);
+    border-radius: 55px;
+    margin-top: 15px;
+    padding: 15px;
+}
+
+.slds-accordion__section {
+    padding: 10px;
+    background-color: #f4f6f9; /* Light background to distinguish sections */
+    margin-bottom: 10px; /* Add space between accordion sections */
+}
+
+.slds-accordion__summary-heading {
+    font-weight: bold;
+    color: #0070d2; /* Salesforce Blue */
+}
+
+.slds-accordion__summary-heading:hover {
+    color: #005fa8; /* Slightly darker on hover */
+}
+
+.slds-datatable {
+    margin-top: 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+}
+
+.slds-datatable th, 
+.slds-datatable td {
+    padding: 8px; /* Provide better spacing within the table */
+}
+
+.slds-datatable th {
+    background-color: #f4f6f9; /* Light background for headers */
+}
+
+.slds-datatable tbody tr {
+    border-bottom: 1px solid #dcdcdc; /* Distinct rows in the datatable */
+}
+
+.slds-datatable tbody tr:hover {
+    background-color: #eef2f7; /* Hover effect for better UX */
+}

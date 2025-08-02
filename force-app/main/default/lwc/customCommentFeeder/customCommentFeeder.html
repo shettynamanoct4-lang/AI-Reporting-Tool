@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="Comments" icon-name="standard:case_comment">
+        <lightning-layout>
+            <lightning-layout-item padding="around-small">
+                <lightning-input-rich-text value={commentBody} onchange={handleChange} onkeyup={handleKeyUp}>
+                </lightning-input-rich-text>
+            </lightning-layout-item>
+        </lightning-layout>
+        <div class="lookup-results">
+            <template if:true={showUserLookup}>
+                <ul>
+                    <template for:each={userLookupResults} for:item="user">
+                        <li key={user.Id} data-id={user.Id} onclick={handleUserSelect}>
+                            <img src={user.SmallPhotoUrl} alt="Profile photo" />
+                            {user.Name}
+                        </li>
+                    </template>
+                </ul>
+            </template>
+        </div>
+        <lightning-layout class="slds-border_bottom">
+            <lightning-layout-item padding="around-small" class="slds-float_right">
+                <lightning-button name="post" label="Post" variant="brand" onclick={handlePostClick}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+        <div class="slds-var-m-around_medium">
+            <template if:true={comments.data}>
+                <template for:each={comments.data} for:item="userComment">
+                    <c-user-comment-tile class="slds-show slds-is-relative slds-border_bottom" key={userComment.Id}
+                        user-comment={userComment} onselect={handleSelect}></c-user-comment-tile>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>

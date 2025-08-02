@@ -1,0 +1,24 @@
+<template>
+    <template if:true={isShowModal}>
+        <div class="modal-container">
+            <div class="modal">
+                <header class="modal-header">
+                    <h2>Filter Criteria</h2>
+                    <button class="close-button" onclick={hideModalBox}>
+                        <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+                    </button>
+                </header>
+                <div class="modal-body">
+                    <lightning-combobox name="filterCriteria" label="Filter Criteria" options={filterOptions} onchange={handleCriteriaChange}></lightning-combobox>
+                    <lightning-input name="filterValue" label="Filter Value" onchange={handleValueChange}></lightning-input>
+                </div>
+                <div class="modal-footer">
+                    <lightning-button variant="neutral" label="Cancel" onclick={hideModalBox}></lightning-button>
+                    <lightning-button variant="brand" label="Apply" onclick={applyFilter}></lightning-button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-backdrop"></div>
+    </template>
+   <lightning-button variant="success" label="Open popup" title="Open popup" onclick={showModalBox}></lightning-button> 
+</template>

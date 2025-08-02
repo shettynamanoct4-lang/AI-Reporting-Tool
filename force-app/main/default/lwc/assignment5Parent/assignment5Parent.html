@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Getting Data From Child">
+        <p class="slds-p-horizontal_small">
+            Value from Child one : {outputValueOne}          
+        </p>
+        <p class="slds-p-horizontal_small">
+            Value from Child two : {outputValue}          
+        </p>
+      </lightning-card>
+      <c-assignment5-child onoutputonechange={handleChangeOne}></c-assignment5-child>
+      <c-assignment5-child2 onoutputvaluechange={handleOutputValueChange}></c-assignment5-child2>
+</template>

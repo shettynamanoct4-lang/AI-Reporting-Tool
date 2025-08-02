@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Display Value from Array of JSON">
+        <template for:each={Student} for:item="stud">
+            <p key={stud.Age}> {stud.Name}</p>
+        </template>
+
+    <lightning-button
+    label = "Show Value" onclick={clk}
+    ></lightning-button>
+    </lightning-card>
+
+
+
+    
+
+    
+    
+</template>

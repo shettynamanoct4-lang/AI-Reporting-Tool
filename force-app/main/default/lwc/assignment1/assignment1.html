@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Account Form">
+        <div class="slds-m-around_medium">
+            <lightning-input label="Account Name" value={accountName} onchange={handleAccountNameChange}></lightning-input>
+            <lightning-input type="tel" label="Phone" value={phone} onchange={handlePhoneChange}></lightning-input>
+            <lightning-combobox label="Industry" value={industry} options={industryOptions} onchange={handleIndustryChange} disabled={isSalesRecord}></lightning-combobox>
+            <lightning-button variant="brand" label="Save" onclick={handleSave}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

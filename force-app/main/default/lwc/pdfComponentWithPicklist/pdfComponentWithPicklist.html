@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Select the Account Industry and Print PDF">
+        <lightning-combobox
+        label="Select Industry"
+        value={value}
+        options={options}
+        placeholder="Select"
+        onchange={changeHandler}>
+
+        </lightning-combobox>
+        <h1>The industry selected is : {value} </h1>
+        <lightning-layout>
+            <div class="slds-p-around_small">
+                <lightning-button 
+               variant="brand"
+               label="Generate PDF"
+               onclick={generatePDF}>
+                </lightning-button>
+            </div>
+        </lightning-layout>
+    </lightning-card>
+
+    
+</template>

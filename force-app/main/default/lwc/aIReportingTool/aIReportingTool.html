@@ -1,0 +1,113 @@
+<template>
+    <lightning-card>
+
+        <div slot="title" class="slds-grid slds-grid_vertical-align-center chatbot-title">
+
+            <div class="bot-avatar">
+                <img src={chatbotIconUrl} alt="Chatbot Avatar" class="bot-animation" height="50px" width="50px" />
+            </div>
+            <span class="slds-m-left_small title-text">Hi, How can I assist you today?</span>
+        </div>
+        <!-- Right: Reset Button -->
+
+        <div class="slds-m-top_small slds-m-left_medium slds-m-bottom_medium">
+
+            <lightning-button class="slds-m-left_auto" label="Reset" variant="destructive" icon-name="utility:refresh"
+                onclick={handleReset} title="Clear chat and start fresh">
+            </lightning-button>
+        </div>
+
+
+        <div class="chat-container">
+            <div class="chat-messages">
+                <template for:each={messages} for:item="msg">
+                    <div key={msg.id} class={msg.class}>
+                        <template if:true={msg.isTable}>
+                            <lightning-datatable key-field="Id" data={msg.tableData} columns={msg.columns}
+                                hide-checkbox-column>
+                            </lightning-datatable>
+                            <!-- ✅ Record Count Display -->
+                            <div class="slds-m-top_x-small slds-text-body_small slds-text-color_weak">
+                                Showing {msg.recordCount} {msg.recordLabel}.
+                            </div>
+
+                            <div class="slds-m-top_small">
+                                <lightning-button label="Export to Excel" variant="brand" icon-name="utility:download"
+                                    onclick={downloadExcel} data-id={msg.id}>
+                                </lightning-button>
+
+                                <lightning-button label="Summarize" variant="neutral" icon-name="utility:summary"
+                                    onclick={handleSummarize} data-id={msg.id} class="slds-m-left_x-small">
+                                </lightning-button>
+
+                                <lightning-button label="Visualize" variant="neutral" icon-name="utility:chart"
+                                    onclick={handleVisualize} data-id={msg.id} class="slds-m-left_x-small">
+                                </lightning-button>
+
+                                <lightning-button label="Send Email" variant="neutral" icon-name="utility:email"
+                                    onclick={handleSendEmail} data-id={msg.id} class="slds-m-left_x-small">
+                                </lightning-button>
+
+
+                                <template if:true={showChart}>
+                                    <div class="slds-grid slds-grid--align-center slds-m-top_small"
+                                        style="background: white">
+                                        <canvas class="chart-canvas" lwc:dom="manual"></canvas>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                        <template if:false={msg.isTable}>
+                            <lightning-formatted-rich-text value={msg.text}></lightning-formatted-rich-text>
+                        </template>
+                    </div>
+                </template>
+
+                <template if:true={loading}>
+                    <div class="bot-typing">
+                        <div class="typing-indicator">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span>Thinking...</span>
+                    </div>
+                </template>
+            </div>
+
+            <div class="chat-input">
+
+                <div class="input-container">
+
+                    <lightning-input type="text" label="Ask a new Question (Previous chats won't be remembered)"
+                        value={userQuery}
+                        placeholder="Type here... or select a prompt.. say.. show 10 recently created accounts"
+                        onchange={handleInputChange} onfocus={handleShowSuggestions}>
+                    </lightning-input>
+
+                    <!-- Suggestion Dropdown -->
+                    <template if:true={showSuggestions}>
+                        <div class="suggestion-dropdown">
+                            <template for:each={promptOptions} for:item="prompt">
+                                <div key={prompt.value} class="suggestion-item" onclick={handleSuggestionClick}
+                                    data-value={prompt.value}>
+                                    {prompt.label}
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+
+                </div>
+
+                <lightning-button-icon icon-name="utility:send" variant="brand" alternative-text="Send"
+                    onclick={handleAsk}>
+                </lightning-button-icon>
+                <!--
+                <lightning-button-icon icon-name="utility:refresh" variant="border-filled" alternative-text="Clear"
+                    onclick={handleReset}>
+                </lightning-button-icon> -->
+
+            </div>
+        </div>
+    </lightning-card>
+</template>

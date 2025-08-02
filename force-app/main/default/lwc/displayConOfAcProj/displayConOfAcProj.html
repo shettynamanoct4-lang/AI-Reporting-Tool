@@ -1,0 +1,28 @@
+<template>
+    <!-- Create a button for display !-->
+    <lightning-button 
+    variant="brand"
+    label= {displayContacts}
+    onclick={changeHandler}>
+    </lightning-button>
+    <!-- On click of show display the card of Contacts with search !-->
+    <template if:true={isVisible}>
+        <lightning-card title="Contacts Display">
+            <!--For Input Search of Contact-->
+            <lightning-input
+            type="search"
+            label="Search"
+            value={searchKey}
+            onchange={handlerChange}>
+            </lightning-input>
+
+            <lightning-datatable
+            columns={columns}
+            data={data}
+            key-field="id"
+            onrowselection={getSelectedRows}></lightning-datatable>
+            
+            
+        </lightning-card>
+    </template>    
+</template>

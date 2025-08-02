@@ -1,0 +1,38 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <lightning-card title="Pagination with Unlimited Data [Account Record(s)] Lightining Data Table" icon-name="action:announcement">
+        <div class="slds-m-around_medium">
+            <lightning-input type="search" name="name" label="Enter Account Name" placeholder="Search..." class="inputaccname"></lightning-input>
+            <lightning-button-group>
+                <lightning-button variant="neutral" label="Search" title="Search" onclick={searchRecord}></lightning-button>
+                <lightning-button variant="neutral" label="Show All" title="Show All" onclick={showAllRecords}></lightning-button>
+            </lightning-button-group>
+            
+        </div>
+        
+        <div class="slds-m-around_medium">
+            <template if:true={accounts}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={accounts}
+                    columns={columns}
+                    onrowselection={handleRowSelection}
+                    onsave={handleSave}
+                    draft-values={draftValues}>
+                </lightning-datatable>
+            </template>
+        </div>
+
+        <lightning-layout class="slds-p-around_small">
+            <div class="slds-align_absolute-center">
+                <lightning-layout-item>
+                    <lightning-button label="Previous" icon-name="utility:chevronleft" onclick={handlePrevious}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="grow" class="slds-p-left_medium"></lightning-layout-item>
+                <lightning-layout-item>
+                    <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right" onclick={handleNext}></lightning-button>
+                </lightning-layout-item>
+            </div>
+        </lightning-layout>
+    </lightning-card>
+</template>

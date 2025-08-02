@@ -1,0 +1,8 @@
+<template>
+    <lightning-card title="Account Data Tables">
+        <template for:each={tableDataSets} for:item="dataSet">
+            <lightning-datatable key={dataSet.key} data={dataSet.data} columns={columns}
+                key-field="Name"></lightning-datatable>
+        </template>
+    </lightning-card>
+</template>

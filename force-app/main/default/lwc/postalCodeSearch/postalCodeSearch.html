@@ -1,0 +1,43 @@
+<template>
+    <lightning-card title="Postal Branches Display">
+        <!--For Input Search of Contact-->
+        <lightning-input
+        type="search"
+        label="Search Postal Branches"
+        value={searchKey}
+        onchange={handlerChange}>
+        </lightning-input>
+    <lightning-button 
+    variant="brand"
+    label= {displayPostalBranches}
+    onclick={changeHandler}>
+    </lightning-button>
+    <template if:true={show}>
+
+<table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+    <thead>
+      <tr class="slds-line-height_reset">
+        <th class="" scope="col">
+          <div class="slds-truncate" title="Branch Name">Branch Name</div>
+        </th>
+        <th class="" scope="col">
+          <div class="slds-truncate" title="Branch State">Branch State</div>
+        </th>
+    </tr>
+    </thead>
+        
+        <template for:each={postalList} for:item="postss">
+            
+            <tr key={postss.PINCode} class ="slds-hint-parent">
+                <td>{postss.Name}</td>
+                <td>{postss.State}</td>
+            </tr>
+
+        </template>
+    </table>
+
+
+    </template>
+    </lightning-card>
+    
+</template>

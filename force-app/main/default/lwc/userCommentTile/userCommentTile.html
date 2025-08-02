@@ -1,0 +1,23 @@
+<template>
+    <template if:true={userComment}>
+        <lightning-layout vertical-align="center">
+            <lightning-layout-item>
+                <img src={userComment.CreatedBy.SmallPhotoUrl} alt="Profile photo" />
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <a href="#" onclick={handleClick}>
+                    <p>{userComment.CreatedBy.Name}</p>
+                </a>
+                <p><small>
+                        <lightning-relative-date-time value={createdDate}></lightning-relative-date-time>
+                    </small>
+                </p>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-formatted-rich-text class="slds-var-m-bottom_medium" value={userComment.Body}>
+        </lightning-formatted-rich-text>
+    </template>
+    <template if:false={userComment}>
+        <p>No contact data available.</p>
+    </template>
+</template>

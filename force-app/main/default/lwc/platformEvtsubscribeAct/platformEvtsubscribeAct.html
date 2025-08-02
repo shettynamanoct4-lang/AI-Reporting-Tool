@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Account Details" icon-name="standard:account">
+        <div class="slds-p-around_medium">
+            <lightning-input label="Account Name" value={accountName} disabled></lightning-input>
+            <lightning-input label="Phone" value={accountPhone} disabled></lightning-input>
+            <lightning-combobox
+                label="Rating"
+                value={accountRating}
+                placeholder="Select Rating"
+                options={ratingOptions}
+                onchange={handleRatingChange}>
+            </lightning-combobox>
+        </div>
+    </lightning-card>
+</template>

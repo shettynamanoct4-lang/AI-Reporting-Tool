@@ -1,0 +1,8 @@
+.custom-modal-highlight {
+    border: 4px solid #5cb85c; /* Green border */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Shadow for highlight effect */
+}
+
+.icon-container {
+    margin-left: 10px; /* Adjust the gap as needed */
+}

@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Display Contact of this Account">
+        <lightning-combobox
+        label="Search Account"
+        value={value}
+        options={options}
+        placeholder="Accounts"
+        onchange={changeHandler}>
+        </lightning-combobox>
+
+        <template if:true={isVisible}>
+            <lightning-datatable
+            columns={columns}
+            data={data}
+            key-field="Id">
+        </lightning-datatable>
+
+        </template>
+    </lightning-card>
+    
+</template>

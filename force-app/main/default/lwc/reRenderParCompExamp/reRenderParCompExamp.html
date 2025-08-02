@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Parent Component for button click">
+    <lightning-layout>
+        <lightning-layout-item padding="around-small" size="2">
+    <lightning-button label="Rerender Child Component" onclick={handleRerender}></lightning-button>
+    <c-re-render-example-comp parentval = {rerenderKey}></c-re-render-example-comp>
+</lightning-layout-item>
+</lightning-layout>
+    </lightning-card>
+</template>

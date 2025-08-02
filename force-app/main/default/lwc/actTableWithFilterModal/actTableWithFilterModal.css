@@ -1,0 +1,10 @@
+.container {
+    position: relative;
+}
+
+.modal-container {
+    position: absolute;
+    top: 50px; /* Adjust this value as needed to position the modal */
+    left: 0;
+    z-index: 999;
+}

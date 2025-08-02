@@ -1,0 +1,32 @@
+<template>
+    <lightning-card title="Contact Table">
+        <lightning-layout>
+            <lightning-layout-item size="4" padding="around-small">
+                <lightning-input type="search" label="Search" onchange={handleSearch}></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="4" padding="around-small">
+                <lightning-combobox label="Rows per Page" options={rowsPerPageOptions} value={rowsPerPage} onchange={handleRowsPerPageChange}></lightning-combobox>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-layout>
+            <lightning-layout-item size="12" padding="around-small">
+                <template if:true={ShowContacts}>
+                    <lightning-datatable
+                        key-field="Id"
+                        data={contacts}
+                        columns={columns}
+                        sorted-direction={sortedDirection}
+                        sorted-by={sortedBy}
+                        default-sort-direction="asc"
+                        default-sort-field="ContactName"
+                        onsort={handleSort}
+                        hide-checkbox-column
+                    ></lightning-datatable>
+                </template>
+                <template if:false={ShowContacts}>
+                    <div class="no-records">No records found</div>
+                </template>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="ComboBox display of Account Selected">
+        <lightning-combobox
+        label= 'Select Account'
+        value={value}
+        options={options}
+        placeholder="Select"
+        onchange={changeHandler}>
+        </lightning-combobox>
+        <h1>The Account Id is:{value}</h1>
+
+
+    </lightning-card>
+    
+</template>

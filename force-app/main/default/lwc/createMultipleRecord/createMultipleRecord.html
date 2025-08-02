@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title={title} icon-name="standard:record" size="small">
+        <!--Here we dont use name field for input because we use seperate handler for input instead of common handler which we do normally-->
+        <lightning-input type="text" label="Account Name" value={contRec.Name} onchange={changeHandler1}></lightning-input>
+        <lightning-input type="text" label="Account Phone" value={contRec.Phone} onchange={changeHandler2}></lightning-input>
+        
+        <div slot="footer">
+            <lightning-button variant="brand" label="Create Contact" onclick={handleSave}></lightning-button>
+            
+
+        </div>
+
+        
+
+    </lightning-card>
+
+
+    
+</template>

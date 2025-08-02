@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Render magic(Open Console to check if renderedCallBack is fired)">
+        <lightning-button 
+        variant="brand"
+        label="Dummy Button To render the track Property"
+        onclick={changeHandler}>
+        </lightning-button>
+    </lightning-card>
+    <template if:true={childDummyKey}>
+        <lightning-card title="Display">
+            <h1>{childDummyKey}</h1> 
+        </lightning-card>
+
+    </template>
+    
+</template>

@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Record View Form">
+        <lightning-record-view-form
+        record-id={recordId}
+        object-api-name={objectApiName}
+        density="Compact">
+        
+        <!--Make density Auto for down display of output field-->
+
+        <lightning-output-field field-name={NameField}></lightning-output-field>
+        <lightning-output-field field-name={Phone}></lightning-output-field>
+        <lightning-output-field field-name={BillingAddress}></lightning-output-field>
+        </lightning-record-view-form>   
+    </lightning-card>
+    
+</template>

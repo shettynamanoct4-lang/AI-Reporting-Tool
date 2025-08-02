@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="Account Records">
+        <div class="slds-m-around_medium">
+            <lightning-input type="search" label="Search" onchange={handleSearch}></lightning-input>
+        </div>
+        <div class="slds-m-around_medium">
+            <lightning-button variant="destructive" label="Delete" onclick={deleteSelected}></lightning-button>
+        </div>
+        <div class="slds-m-around_medium">
+            <lightning-datatable
+                key-field="Id"
+                data={filteredAccounts}
+                columns={columns}
+                onrowselection={handleRowSelection}>
+            </lightning-datatable>
+        </div>
+    </lightning-card>
+
+    <template if:true={showToast}>
+        <div class="slds-notify_container slds-is-relative">
+            <div class="slds-notify slds-notify_toast slds-theme_success" role="alert">
+                <span class="slds-assistive-text">Success</span>
+                <lightning-button-icon
+                    icon-name="utility:close"
+                    variant="bare"
+                    alternative-text="Close"
+                    onclick={closeToast}>
+                </lightning-button-icon>
+                <div class="slds-notify__content">
+                    <h2 class="slds-text-heading_small">Records Deleted</h2>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

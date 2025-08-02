@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Display PickList value of Account Industry">
+       <lightning-combobox
+        label="Select Industry"
+        value={value}
+        options={options}
+        placeholder="Select"
+        onchange={changeHandler}>
+
+        </lightning-combobox>
+        <h1>The industry selected is:{value} </h1>
+        
+        
+    </lightning-card>
+    
+</template>

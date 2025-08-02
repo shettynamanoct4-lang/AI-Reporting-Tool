@@ -1,0 +1,37 @@
+<template>
+    <lightning-card title="Related Contact and Cases Details" class="custom-card">
+        <div class="slds-m-around_medium">
+            <lightning-accordion allow-multiple-sections-open>
+                <!-- Contacts Section -->
+                <lightning-accordion-section name="Contacts" label="Related Contacts">
+                    <template if:true={contacts.length}>
+                        <lightning-datatable
+                            key-field="id"
+                            data={contacts}
+                            columns={contactColumns}
+                            class="slds-datatable">
+                        </lightning-datatable>
+                    </template>
+                    <template if:false={contacts.length}>
+                        <p>No Contacts found for this Account</p>
+                    </template>
+                </lightning-accordion-section>
+
+                <!-- Cases Section -->
+                <lightning-accordion-section name="Cases" label="Related Cases">
+                    <template if:true={cases.length}>
+                        <lightning-datatable
+                            key-field="id"
+                            data={cases}
+                            columns={caseColumns}
+                            class="slds-datatable">
+                        </lightning-datatable>
+                    </template>
+                    <template if:false={cases.length}>
+                        <p>No Cases found for this Account</p>
+                    </template>
+                </lightning-accordion-section>
+            </lightning-accordion>
+        </div>
+    </lightning-card>
+</template>

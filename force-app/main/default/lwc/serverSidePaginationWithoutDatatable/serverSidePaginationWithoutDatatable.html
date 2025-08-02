@@ -1,0 +1,102 @@
+<template>
+    <!-- LOADER -->
+    <template lwc:if={isLoading}>
+        <lightning-spinner variant="brand" size="large"></lightning-spinner>
+    </template>
+
+    <!-- Action Buttons -->
+    <div class="slds-m-bottom_medium">
+        <lightning-button variant="destructive" label="Delete" onclick={handleDelete} disabled={isDeleteDisabled}></lightning-button>
+        <lightning-button variant="neutral" label="Clear" onclick={handleClear}></lightning-button>
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-text-align_right">
+            <lightning-input type="search" class="custom-search-input" placeholder="Please enter minimum 3 characters" onchange={handleSearch}></lightning-input>
+        </div>
+    </div>
+
+    <!-- CUSTOM TABLE -->
+    <div class="slds-box slds-box_xx-small slds-theme_default">
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_col-bordered">
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <th scope="col">
+                        <input type="checkbox" onchange={handleSelectAll} />
+                    </th>
+                    <th scope="col" data-id="Name">
+                        <div class="slds-truncate" title="Name">Name
+                            <span class="icon-container" onclick={handleSort}>
+                                <lightning-icon icon-name="utility:arrowdown" size="x-small"></lightning-icon>
+                            </span>
+                            <span class="icon-container" onclick={openFilterModal} data-field="Name">
+                                <lightning-icon icon-name="utility:filter" size="x-small"></lightning-icon>
+                            </span>
+                        </div>
+                    </th>                    
+                    <th scope="col" data-id="Type" onclick={handleSort}>
+                        <div class="slds-truncate" title="Type">Type
+                            <lightning-icon icon-name="utility:filter" size="x-small" onclick={openModal} data-field="Type"></lightning-icon>
+                        </div>
+                    </th>
+                    <th scope="col" data-id="Rating" onclick={handleSort}>
+                        <div class="slds-truncate" title="Rating">Rating
+                            <lightning-icon icon-name="utility:filter" size="x-small" onclick={openModal} data-field="Rating"></lightning-icon>
+                        </div>
+                    </th>
+                    <th scope="col" data-id="NumberOfEmployees" onclick={handleSort}>
+                        <div class="slds-truncate" title="Employees">Employees
+                            <lightning-icon icon-name="utility:filter" size="x-small" onclick={openModal} data-field="NumberOfEmployees"></lightning-icon>
+                        </div>
+                    </th>
+                    <th scope="col" data-id="CreatedDate" onclick={handleSort}>
+                        <div class="slds-truncate" title="Created Date">Created Date
+                            <lightning-icon icon-name="utility:filter" size="x-small" onclick={openModal} data-field="CreatedDate"></lightning-icon>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={recordsToDisplay} for:item="record">
+                    <tr key={record.Id}>
+                        <td data-label="Select">
+                            <input type="checkbox" data-id={record.Id} onchange={handleRowSelect} />
+                        </td>
+                        <td data-label="Name">{record.Name}</td>
+                        <td data-label="Type">{record.Type}</td>
+                        <td data-label="Rating">{record.Rating}</td>
+                        <td data-label="Employees">{record.NumberOfEmployees}</td>
+                        <td data-label="Created Date">{record.CreatedDate}</td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PAGINATION -->
+    <c-paginator lwc:if={showPaginator} page-size={pageSize} total-records={totalRecords}
+        onpaginationchange={paginationChangeHandler}></c-paginator>
+
+    <!-- NO RECORDS FOUND -->
+    <template if:false={hasRecords}>
+        <div class="slds-align_absolute-center slds-text-heading_medium slds-p-around_small">
+            No records to display
+        </div>
+    </template>
+
+    <!-- Modal for Filters -->
+    <template if:true={showModal}>
+        <div class="slds-backdrop_open"></div>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleModalClose}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-text-heading_medium">Filter</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <c-filter-pop onapply={applyFilter} onclosemodal={handleModalClose}></c-filter-pop>
+                </div>
+            </div>
+        </section>
+    </template>
+</template>

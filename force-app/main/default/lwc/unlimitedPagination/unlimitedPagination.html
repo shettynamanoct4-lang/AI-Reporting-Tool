@@ -1,0 +1,68 @@
+<!--
+  @name: unlimitedPagination
+  @author: Naman
+  @date: 22 MAR 2021
+  @description: It shows the unlimited records with inbuilt pagination feature as well as it has the capable of 
+                searching and saving the records.
+--> 
+<template>
+    <lightning-card title="Pagination with Custom Data Table Unlimited Data [Account Record(s)]" icon-name="action:aanouncement">  
+      <table style="border:none">
+        <tr>
+          <td style="padding:10px"><lightning-input type="search" name="name" label="Enter Account Name" placeholder="Search..." class="inputaccname" ></lightning-input></td>
+          <td style="padding-top:22px">
+            <lightning-button-group>
+              <lightning-button variant="neutral" label="Search" title="Search" onclick={searchRecord}></lightning-button>
+              <lightning-button variant="neutral" label="Show All" title="Show All" onclick={showAllRecords}></lightning-button>
+            </lightning-button-group>
+          </td>
+          <td style="padding-top:22px"><lightning-button variant="brand" label="Save" title="Save" onclick={saveRecords}></lightning-button></td>
+       </tr>
+      </table>        
+        <div class="slds-m-around_medium">  
+          <template if:true={accounts}>  
+            <table class="slds-table slds-table_bordered slds-table_col-bordered slds-table_cell-buffer slds-table_fixed-layout" style="zoom:100%;">  
+              <thead>  
+                <tr class="slds-text-heading_label">  
+                  <th scope="col" style="width:3.25rem">  
+                    <lightning-input type="checkbox"></lightning-input>                    
+                  </th>  
+                  <th scope="col">  
+                    <div class="slds-truncate" title="Name">Name</div>  
+                  </th>    
+                  <th scope="col">  
+                    <div class="slds-truncate" title="Site">Site</div>  
+                  </th> 
+                </tr>  
+              </thead>  
+              <tbody> 
+                <template for:each={accounts} for:item="acc">  
+                  <tr key={acc.Id}> 
+                    <td>  
+                      <lightning-input type="checkbox" checked={acc.IsChecked} data-id={acc.Id} onchange={doRecordSelection}></lightning-input>                    
+                    </td>   
+                    <td>  
+                      <div class="slds-cell-wrap" title={acc.Name}>{acc.Name}</div>  
+                    </td>   
+                    <td>   
+                      <lightning-input style="margin-top: -4%;" type="text" data-id={acc.Id} value={acc.Site} onchange={handleUpdateSite}></lightning-input>
+                    </td>  
+                  </tr>  
+                </template>  
+              </tbody>  
+            </table>  
+          </template>  
+        </div>  
+        <lightning-layout class="slds-p-around_small">  
+            <div class="slds-align_absolute-center">
+              <lightning-layout-item>  
+                <lightning-button label="Previous" icon-name="utility:chevronleft" onclick={handlePrevious}></lightning-button>  
+              </lightning-layout-item> 
+              <lightning-layout-item flexibility="grow" class="slds-p-left_medium"></lightning-layout-item>  
+              <lightning-layout-item>  
+                <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right" onclick={handleNext}></lightning-button>  
+              </lightning-layout-item>  
+           </div>
+          </lightning-layout>  
+      </lightning-card>  
+</template>
