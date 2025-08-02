@@ -24,8 +24,8 @@ public with sharing class OpenAIController {
     @AuraEnabled
     public static String getAIReport(String queryInput) {
         try {
-            //String apiKey = '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'; // Store securely in Named Credentials or Custom Metadata
 
+            String apiKey = 'dummy';
             String schemaDetails = getSchemaDetails();
             HttpResponse response = callChatGPT(queryInput, apiKey, schemaDetails);
             System.debug('Response code : ' + response.getStatusCode());
