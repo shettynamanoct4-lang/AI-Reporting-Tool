@@ -25,7 +25,7 @@ public with sharing class AIReportingController {
     public static String getAISummary(String tableData) {
         System.debug('Data for summary : ' + tableData);
         try {
-            String apiKey = 'dummy'; // Store securely in Named Credentials or Custom Metadata
+            String apiKey = Label.OpenAI_API_Key; // Store securely in Named Credentials or Custom Metadata
             
             String summaryPrompt = 
                 'You are a data analyst. Analyze the following Salesforce tabular data and generate a clear and insightful summary for business stakeholders.\n\n' +
