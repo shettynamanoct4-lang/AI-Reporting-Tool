@@ -25,7 +25,7 @@ public with sharing class AIReportingController {
     public static String getAISummary(String tableData) {
         System.debug('Data for summary : ' + tableData);
         try {
-            String apiKey = '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'; // Store securely in Named Credentials or Custom Metadata
+            //String apiKey = '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'; // Store securely in Named Credentials or Custom Metadata
             
             String summaryPrompt = 
                 'You are a data analyst. Analyze the following Salesforce tabular data and generate a clear and insightful summary for business stakeholders.\n\n' +
